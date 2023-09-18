@@ -1,11 +1,13 @@
 from flask import Flask, render_template, request, redirect, url_for
 import uuid
-
+import os
 
 app = Flask(__name__)
 
+caminho_absoluto = os.path.abspath("login.txt")
+
 def verificar_login(username, password):
-    with open('login.txt', 'r') as file:
+    with open(caminho_absoluto, 'r') as file:
         for line in file:
             cadastro= line.strip().split('-')
             if username == cadastro[0] and password == cadastro[1]:
